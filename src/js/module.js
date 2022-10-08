@@ -21,7 +21,4 @@ const options = {
   },
 };
 
-
-
-
 export { refs, getRandomHexColor, options };
