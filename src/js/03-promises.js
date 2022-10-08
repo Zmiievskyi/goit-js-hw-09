@@ -33,6 +33,7 @@ function onFormaSubmit(e) {
 
     delayEl += stepEl;
   }
+  formRef.reset();
   onOffBtn(totalDelay);
 }
 
@@ -53,5 +54,6 @@ function createPromise(position, delay) {
 function onOffBtn(total) {
   setTimeout(() => {
     startBtn.disabled = false;
+    
   }, total);
 }
