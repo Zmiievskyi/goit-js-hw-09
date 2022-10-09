@@ -25,10 +25,8 @@ const refs = {
 flatpickr('#datetime-picker', options);
 
 refs.startBtn.disabled = true;
-console.dir(Date.now);
 function onClose(selectedDates) {
   const actualData = Date.now();
-  console.dir(selectedDates);
   if (selectedDates[0].getTime() >= actualData) {
     refs.startBtn.disabled = false;
     refs.startBtn.addEventListener('click', () => {
@@ -46,8 +44,7 @@ function onClose(selectedDates) {
         }
         //------------------------------------------
 
-        
-        console.log(secs, selectedDates[0].getSeconds());
+
         const dayLeft = addLeadingZero(days);
         const hoursLeft = addLeadingZero(hours);
         const minutesLeft = addLeadingZero(mins);
