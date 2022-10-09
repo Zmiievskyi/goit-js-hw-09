@@ -25,19 +25,29 @@ const refs = {
 flatpickr('#datetime-picker', options);
 
 refs.startBtn.disabled = true;
-
+console.dir(Date.now);
 function onClose(selectedDates) {
   const actualData = Date.now();
-
+  console.dir(selectedDates);
   if (selectedDates[0].getTime() >= actualData) {
     refs.startBtn.disabled = false;
     refs.startBtn.addEventListener('click', () => {
       refs.startBtn.disabled = true;
-      setInterval(() => {
+      const id = setInterval(() => {
         const timer = getTimeComponents(
           selectedDates[0].getTime() - Date.now()
         );
         const { days, hours, mins, secs } = timer;
+
+
+        //__________________________________________
+        if (secs <= selectedDates[0].getSeconds()) {
+          clearInterval(id);
+        }
+        //------------------------------------------
+
+        
+        console.log(secs, selectedDates[0].getSeconds());
         const dayLeft = addLeadingZero(days);
         const hoursLeft = addLeadingZero(hours);
         const minutesLeft = addLeadingZero(mins);
@@ -56,7 +66,6 @@ function onClose(selectedDates) {
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 }
-
 function getTimeComponents(time) {
   const days = Math.floor(
     (time % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24)
